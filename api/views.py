@@ -8,6 +8,7 @@ from api.serializers import ChecklistSerializer, ChecklistItemsSerializer
 from rest_framework.serializers import Serializer
 from rest_framework import status
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -19,6 +20,7 @@ from django.http import Http404
 # GETTING ALL DATA
 class Checklist(APIView):
     serializer_class = ChecklistSerializer
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
         data = MyCheckList.objects.all()
